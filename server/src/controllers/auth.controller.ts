@@ -1,22 +1,21 @@
 import { Request, Response } from "express";
-import { registerNewUser, loginUser } from '../services/auth'
+import { registerNewUser, loginUser } from "../services/auth";
 
-const register = async ({body}: Request, res: Response) => {
+const register = async ({ body }: Request, res: Response) => {
   const responseUser = await registerNewUser(body);
 
   res.send(responseUser);
-}
+};
 
 const login = async ({ body }: Request, res: Response) => {
   const { email, password } = body;
-  const responseUser = await loginUser({email, password});
+  const responseUser = await loginUser({ email, password });
 
-  if( responseUser === "Incorrect_Password" ) {
+  if (responseUser === "Incorrect_Password") {
     res.status(403).send(responseUser);
   } else {
-    res.send(responseUser);    
+    res.send(responseUser);
   }
+};
 
-}
-
-export { register, login }
+export { register, login };
