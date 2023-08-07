@@ -20,11 +20,11 @@ const registerNewUser = async ({ email, password, username }: User) => {
 const loginUser = async ({ email, password }: Auth) => {
   try {
     const checkIs = await UserModel.findOne({ email });
-    if (!checkIs) return "Not_Found_User";
+    if (!checkIs) return "Not Found User";
 
     const passwordHash = checkIs.password;
     const isCorrect = await verified(password, passwordHash);
-    if (!isCorrect) return "Incorrect_Password";
+    if (!isCorrect) return "Incorrect credentials";
     const token = generateToken(email);
     const data = {
       token,

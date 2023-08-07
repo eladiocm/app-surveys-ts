@@ -10,12 +10,8 @@ const register = async ({ body }: Request, res: Response) => {
 const login = async ({ body }: Request, res: Response) => {
   const { email, password } = body;
   const responseUser = await loginUser({ email, password });
-
-  if (responseUser === "Incorrect_Password") {
-    res.status(403).send(responseUser);
-  } else {
-    res.send(responseUser);
-  }
+  res.send(responseUser);
+  
 };
 
 export { register, login };
