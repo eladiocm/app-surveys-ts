@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { registerRequest } from '../services/auth'
 import { type User } from '../interfaces/user.interface'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function RegisterPage (): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm<User>()
@@ -30,22 +30,22 @@ function RegisterPage (): JSX.Element {
     })
   }
   return (
-    <div>
+    <div className='containerLogin'>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit(handleOnSubmit)}>
-        {errorsRegister && <p>{errorsRegister}</p>}
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='formLogin'>
+        {errorsRegister && <p className='textError'>{errorsRegister}</p>}
         <input type="text" placeholder="Username" {...register('username', { required: true })}/>
-        {errors.username && <p>Username is required</p>}
+        {errors.username && <p className='textError'>Username is required</p>}
         <input type="email" placeholder="Email" {...register('email', { required: true })} />
-        {errors.email && <p>Email is required</p>}
+        {errors.email && <p className='textError'>Email is required</p>}
         <input type="password" placeholder="Password" {...register('password', { required: true })} />
-        {errors.password && <p>Password is required</p>}
+        {errors.password && <p className='textError'>Password is required</p>}
         <button type="submit">Register</button>
       </form>
       <div>
         <p>
-          Already have an account?
-          <a href="/login">Login</a>
+          Already have an account?{' '}
+          <Link to="/login">Login</Link>
         </p>
       </div>
     </div>

@@ -4,6 +4,8 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import { AuthProvider } from './context/AuthContext'
+import SurveysPage from './pages/SurveysPage'
+import ProtectedRouter from './components/ProtectedRouter'
 
 function App (): JSX.Element {
   return (
@@ -13,8 +15,13 @@ function App (): JSX.Element {
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
-          <Route path='/surveys' element={<div>Surveys</div>} />
-          <Route path='/profile' element={<div>Profile</div>} />
+
+          <Route element={<ProtectedRouter/>}>
+            <Route path='/surveys' element={<SurveysPage />} />
+
+            <Route path='/profile' element={<div>Profile</div>} />
+          </Route>
+
           <Route path='*' element={<div>Not Found</div>} />
         </Routes>
       </BrowserRouter>

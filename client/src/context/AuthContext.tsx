@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(res.data.user)
       localStorage.setItem('token', res.data.token)
       setIsAuthenticated(true)
+      setErrors(null)
     } else {
       setErrors(res.data)
     }

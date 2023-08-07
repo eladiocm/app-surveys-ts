@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { type Auth } from '../interfaces/auth.interface'
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function LoginPage (): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm<Auth>()
@@ -27,20 +27,20 @@ function LoginPage (): JSX.Element {
   }
 
   return (
-    <div>
+    <div className='containerLogin'>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit(handleOnSubmit)}>
-        {errorsLogin && <p>{errorsLogin}</p>}
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='formLogin'>
+        {errorsLogin && <p className='textError'>{errorsLogin}</p>}
         <input type="email" placeholder="Email" {...register('email', { required: true })} />
-        {errors.email && <p>Email is required</p>}
+        {errors.email && <p className='textError'>Email is required</p>}
         <input type="password" placeholder="Password" {...register('password', { required: true })} />
-        {errors.password && <p>Password is required</p>}
+        {errors.password && <p className='textError'>Password is required</p>}
         <button type="submit">Login</button>
       </form>
       <div>
         <p>
-          Don`t have an account?
-          <a href="/register">Register</a>
+          Don`t have an account?{' '}
+          <Link to="/register">Register</Link>
         </p>
       </div>
     </div>
