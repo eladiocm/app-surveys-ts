@@ -18,7 +18,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes componentes en 
     cd app-surveys-ts
     ```
 
-2. **Instala Dependencias:** Tanto para el backend como para el frontend, necesitas instalar las dependencias. Ejecuta los siguientes comandos en las carpetas `backend` y `frontend` por separado:
+2. **Instala Dependencias:** Tanto para el backend como para el frontend, necesitas instalar las dependencias. Ejecuta los siguientes comandos en las carpetas `server` y `client` por separado:
 
     ```bash
     cd server
